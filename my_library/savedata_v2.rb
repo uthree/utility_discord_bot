@@ -58,7 +58,7 @@ module SaveData
             File.open("#{@dir}#{name}.txt", "w") do |f| 
                 f.puts(YAML.dump(val))
             end
-            puts "#{name}を書き込みました。" if @view_log
+            debug "#{name}を書き込みました。" if @view_log
             return val
         end
         def load(name) #ファイルから読み込み
@@ -67,7 +67,7 @@ module SaveData
             File.open("#{@dir}#{name}.txt", "r") do |f| 
                 r = YAML.load(f.read())
             end
-            puts "#{name}を読み込みました。" if @view_log
+            debug "#{name}を読み込みました。" if @view_log
             return r
         end
         def save_all() #バッファにあるデータを全てセーブする

@@ -2,3 +2,4 @@
 debug_log: true #コンソールにデバッグログを表示する
 write_error_log: true #エラーログを記録する。
 savedata_log: true #セーブデータのログを表示する
+developer_ids: [] #Bot開発者のID

@@ -17,6 +17,9 @@ debug "Gemライブラリ読み込み完了。", type: :success
 require "./my_library/emoji_bar.rb"
 require "./my_library/othello.rb"
 require "./my_library/savedata_v2.rb"
+require "./my_library/easy_embed.rb"
+require "./my_library/cui_editor.rb"
+require "./my_library/permission.rb"
 debug "自作ライブラリ読み込み完了。", type: :success
 
 
@@ -27,14 +30,14 @@ if tokens["using"]
     token_key = tokens["using"]
     debug "トークン「#{token_key}」を使用します。"
 else
-    raise "The token to be used has not been specified.  使用するトークンが指定されていません。"
+    raise "The token to be used has not been specified. / 使用するトークンが指定されていません。"
 end
 
 token = nil
 if tokens[token_key]
     token = tokens[token_key]
 else
-    raise "The token name \"#{token_key}\" does not exist in config / tokens.yml.トークン名 「#{token_key}」 は config/tokens.yml に存在しません。"
+    raise "The token name \"#{token_key}\" does not exist in config tokens.yml / トークン名 「#{token_key}」 は config/tokens.yml に存在しません。"
 end
 
 #デバッグようprefixを決める
@@ -44,8 +47,15 @@ else
     bot_prefix = SecureRandom.hex(30)
 end
 
+#セーブデータ初期化
+Users = SaveData::SaveData.new("./data/users/",delete_count=60,view_log=YAML.load_file("./config/debug.yml")["savedata_log"])
+Channels = SaveData::SaveData.new("./data/channels/",delete_count=60,view_log=YAML.load_file("./config/debug.yml")["savedata_log"])
+Servers = SaveData::SaveData.new("./data/servers/",delete_count=60,view_log=YAML.load_file("./config/debug.yml")["savedata_log"])
+GlobalData = SaveData::SaveData.new("./data/global/",delete_count=60,view_log=YAML.load_file("./config/debug.yml")["savedata_log"])
+
 Bot = Discordrb::Commands::CommandBot.new(token: token,prefix: bot_prefix)
 debug "Botオブジェクト初期化。"
+Bot.extend CommandBotExtension
 
 # コマンド読み込み
 Dir[File.expand_path('../events/commands', __FILE__) << '/*.rb'].each do |file|
@@ -54,10 +64,12 @@ Dir[File.expand_path('../events/commands', __FILE__) << '/*.rb'].each do |file|
 end
 
 #その他イベント処理　読み込み
-Dir[File.expand_path('../events/others others', __FILE__) << '/*.rb'].each do |file|
+Dir[File.expand_path('../events/others', __FILE__) << '/*.rb'].each do |file|
   require file
   debug "ファイルを読み込みました。 (#{file})"
 end
+
+
 
 first_startup = true
 

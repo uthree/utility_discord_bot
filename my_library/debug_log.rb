@@ -1,6 +1,7 @@
 require "yaml"
 DEBUG_LOG_FLAG = YAML.load_file("./config/debug.yml")["debug_log"]
 def debug(message, type: :normal) # type: :normal | :warn | :error | :success
+    message = message.to_s unless message.class == String
     if DEBUG_LOG_FLAG
         time = Time.now
         pref = ""
@@ -14,7 +15,7 @@ def debug(message, type: :normal) # type: :normal | :warn | :error | :success
         when :success
             pref = "\e[32m"
         end
-        pref += "[#{time.hour}:#{time.min}:#{time.sec}:#{(time.usec/1000).round}]"
+        pref += "[#{time.hour}:#{time.min}:#{time.sec}.#{(time.usec/1000).round}]"
         until pref.length > 18
             pref += " "
         end
