@@ -1,6 +1,6 @@
 bot = Bot
 
-bot.command :freecategory do |event,act|
+bot.command :freecategory do |event,act,arg|
     GlobalData["freecategory"] ||= {}
     gdata = GlobalData["freecategory"]
     event.extend PotatoUtil
@@ -32,9 +32,9 @@ bot.command :freecategory do |event,act|
                 announce: announce.id,
                 create_channel: create_channel.id,
                 channels: [],
-                channel_score: {},
+                channel_score: {}, #チャンネルのアクティビティ
                 
-                delete_day: 5, # 最終発言から何日後に消すか
+                delete_count: 7, # 1週間後に削除 (0なら削除しない)
                 max_channels: 30 # チャンネル数上限
             }
         end
@@ -46,6 +46,28 @@ bot.command :freecategory do |event,act|
             event.send_success("削除処理が正常に完了しました。", "チャンネル及びカテゴリーは手動で削除してください。")
         else
             event.send_error("このサーバーはフリーカテゴリーを使用していません。")
+        end
+    elsif act == "setlimit"
+        if arg.to_i > 0
+            sdata = gdata[event.server.id]
+            if sdata
+                sdata[:max_channels] = arg.to_i
+            else
+                event.send_error("このサーバーはフリーカテゴリーを使用していません。")
+            end
+        else
+            event.send_error("チャンネル数の上限を指定してください。")
+        end
+    elsif act == "setdelete"
+        if arg.to_i > -1
+            sdata = gdata[event.server.id]
+            if sdata
+                sdata[:delete_count] = arg.to_i
+            else
+                event.send_error("このサーバーはフリーカテゴリーを使用していません。")
+            end
+        else
+            event.send_error("日数を指定してください。")
         end
     end
     GlobalData["freecategory"] = gdata
@@ -67,7 +89,10 @@ bot.message do |event|
             if name.length > 30
                 event.send_error("名前が長すぎます。")
             else
-                ch = event.server.create_channel(name,type=)
+                ch = event.server.create_channel(name,type=0, parent: sdata[:category], topic: "#{event.user.name}さんによって作成されました。")
+                sdata[:channels] << ch.id
+                sdata[:channel_score][ch.id] = 0
+                event.send_success("チャンネル #{name} を作成しました。")
             end
         end
         gdata[event.server.id] = sdata

@@ -102,7 +102,10 @@ freecategory:
       フリーカテゴリーに登録すると、他のサーバーにこのサーバーの招待リンクが公開されます。
       プライベートのサーバーでは実行しないでください。
     usage:
-      freecategory setup: 実行したチャンネルの存在するカテゴリーをフリーカテゴリーに登録します。
+      freecategory setup: 実行したサーバーをフリーカテゴリーに登録します。
+      freecategory teardown: 登録を解除します。
+      freecategory setlimit <チャンネル数上限>: チャンネル数の上限を設定します。 デフォルトは30。
+      freecategory setdelete <日数>: 指定した日数以上発言がないチャンネルを削除します。 0で削除しない設定にできます。 デフォルトは7。
     tags: []
     user_required_permissions: []
     bot_required_permissions: []
