@@ -1,0 +1,5 @@
+# Botトークン。 bot名 : トークン　の形式でかく。
+# using で選んだものが採用される。
+main: YOUR TOKEN HERE
+
+using: main # 使用するトークンを選ぶ。

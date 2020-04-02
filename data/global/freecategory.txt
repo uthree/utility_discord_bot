@@ -1,0 +1,11 @@
+---
+653342075357626400:
+  :category: 693319218145394760
+  :announce: 693319219965853727
+  :create_channel: 693319221450506270
+  :channels:
+  - 693319249703337985
+  :channel_score:
+    693319249703337985: 12
+  :delete_count: 7
+  :max_channels: 4
