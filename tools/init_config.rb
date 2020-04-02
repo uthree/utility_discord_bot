@@ -1,1 +1,0 @@
-#TODO: config_bufferの中身をconfigにコピペする。　めんどくさいからあとで作る！w

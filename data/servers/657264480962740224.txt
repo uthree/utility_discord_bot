@@ -1,9 +1,0 @@
----
-:prefixes:
-- sz!
-- u*
-:aliases: {}
-:jail_role: 
-:jailed_users: []
-:rolesave: false
-:saved_role: {}

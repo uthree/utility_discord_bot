@@ -1,5 +1,0 @@
----
-:prefixes: []
-:command_aliases: {}
-:also_known_as: []
-:aliases: {}
