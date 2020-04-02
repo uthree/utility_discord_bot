@@ -1,0 +1,6 @@
+# Botトークン。 bot名 : トークン　の形式でかく。
+# using で選んだものが採用される。
+main: NjcyMjk4MzUyMDI4OTQyMzM2.Xn3usg.5wD0vGBD-Rrqfdufxp23d2pA3z8
+fss: NjU3NDk1OTYzNjIzMDk2MzIx.XoRrIg.L7nu2wIhLGrXoEU9SYXy_cfqqCI
+
+using: fss # 使用するトークンを選ぶ。

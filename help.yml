@@ -40,6 +40,14 @@ general:
     user_required_permissions: []
     bot_required_permissions: []
     developer_only: false
+  prefix:
+    name: prefix
+    description: |-
+      プレフィックスを変更します。
+    usage:
+      prefix <新しいプレフィックス> [新しいプレフィックス] [新しいプレフィックス]...: プレフィックスを変更します。
+    tags: []
+    developer_only: false
   console:
     name: console
     description: |-
@@ -50,8 +58,6 @@ general:
       console: コンソールを起動します。
       console exit: コンソール を終了します。
     tags: []
-    user_required_permissions: []
-    bot_required_permissions: []
     developer_only: false
   clear:
     name: clear
@@ -61,8 +67,6 @@ general:
     usage:
       clear: ""
     tags: []
-    user_required_permissions: []
-    bot_required_permissions: []
     developer_only: false
 editor:
   edit:
@@ -73,8 +77,6 @@ editor:
     usage:
       edit [ドキュメント名]: 編集を開始します。
     tags: []
-    user_required_permissions: []
-    bot_required_permissions: []
     developer_only: false
   doc:
     name: doc
@@ -90,8 +92,6 @@ editor:
       doc cd <移動先フォルダ>: 対象のフォルダーへ移動します。
       doc mkdir <フォルダ名>: フォルダを作成します。
     tags: []
-    user_required_permissions: []
-    bot_required_permissions: []
     developer_only: false
 
 freecategory:
@@ -107,6 +107,4 @@ freecategory:
       freecategory setlimit <チャンネル数上限>: チャンネル数の上限を設定します。 デフォルトは30。
       freecategory setdelete <日数>: 指定した日数以上発言がないチャンネルを削除します。 0で削除しない設定にできます。 デフォルトは7。
     tags: []
-    user_required_permissions: []
-    bot_required_permissions: []
     developer_only: false
